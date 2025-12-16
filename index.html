@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفوضية تشجيع الاستثمار | ولاية الخرطوم</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-green: #00664F;
+            --secondary-green: #4CAF50;
+            --accent-gold: #C5A059;
+            --dark-gray: #1F2937;
+        }
+
+        .bg-primary-green {
+            background-color: var(--primary-green);
+        }
+
+        .text-primary-green {
+            color: var(--primary-green);
+        }
+
+        .bg-accent-gold {
+            background-color: var(--accent-gold);
+        }
+
+        .text-accent-gold {
+            color: var(--accent-gold);
+        }
+
+        .border-primary-green {
+            border-color: var(--primary-green);
+        }
+
+        /* Dropdown Menu Animation */
+        .group:hover .group-hover\:block {
+            display: block;
+            animation: fadeInMenu 0.2s ease-in-out forwards;
+        }
+
+        @keyframes fadeInMenu {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 102, 79, 0.9), rgba(0, 102, 79, 0.75)), url('https://images.unsplash.com/photo-1577083288073-40892c0860a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar for Dropdowns */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 3px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+
+        body.modal-active {
+            overflow-x: hidden;
+            overflow-y: visible !important;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Top Bar (Social & Contact) -->
+    <div class="bg-primary-green text-white py-1 hidden md:block border-b border-green-800">
+        <div class="container mx-auto px-4 flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <span><i class="fas fa-phone ml-1 text-accent-gold"></i> 00249126434639</span>
+                <span><i class="fas fa-envelope ml-1 text-accent-gold"></i>iec.krt.gov@gmail.com</span>
+            </div>
+            <div>
+                <a href="https://www.facebook.com/share/1N8BAEJ3fM/" target="_blank"
+                    class="hover:text-accent-gold transition">
+                    <i class="fab fa-facebook-f"></i> فيسبوك
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md fixed w-full z-50 top-0 md:top-8 transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+
+            <!-- Logo Section -->
+            <!-- The filename 'I.E.C Logomain.png' is used here. Ensure this file is in the same folder as index.html -->
+            <div class="flex items-center gap-4 cursor-pointer" onclick="navigateTo('home')">
+                <img src="I.E.C Logomain.png" onerror="this.src='IEClogofull.png'" alt="شعار المفوضية"
+                    class="h-20 md:h-28 w-auto object-contain transition hover:scale-105 duration-300">
+
+                <!-- <div class="flex flex-col">
+                    <h1 class="text-xl md:text-3xl font-bold text-primary-green leading-tight">مفوضية تشجيع الاستثمار
+                    </h1>
+                    <h2 class="text-sm md:text-lg text-gray-600 font-medium tracking-wide">ولاية الخرطوم</h2>
+                </div> -->
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center space-x-4 space-x-reverse text-sm font-bold">
+
+                <button onclick="navigateTo('home')"
+                    class="nav-link text-gray-700 hover:text-primary-green transition py-4 px-2">الرئيسية</button>
+
+                <!-- Dynamic Menu: Sectors -->
+                <div class="relative group">
+                    <button class="flex items-center text-gray-700 hover:text-primary-green transition py-4 px-2">
+                        الفرص (قطاعات) <i class="fas fa-chevron-down mr-1 text-xs"></i>
+                    </button>
+                    <div class="absolute hidden group-hover:block w-72 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-gold top-full right-0 max-h-96 overflow-y-auto custom-scroll"
+                        id="nav-sectors-container">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Dynamic Menu: Localities -->
+                <div class="relative group">
+                    <button class="flex items-center text-gray-700 hover:text-primary-green transition py-4 px-2">
+                        الفرص (محليات) <i class="fas fa-chevron-down mr-1 text-xs"></i>
+                    </button>
+                    <div class="absolute hidden group-hover:block w-72 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-gold top-full right-0 max-h-96 overflow-y-auto custom-scroll"
+                        id="nav-localities-container">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <button onclick="navigateTo('library')"
+                    class="nav-link text-gray-700 hover:text-primary-green transition py-4 px-2">
+                    <i class="fas fa-book ml-1"></i> مكتبة المستثمر
+                </button>
+
+                <!-- Services Menu -->
+                <div class="relative group">
+                    <button class="flex items-center text-gray-700 hover:text-primary-green transition py-4 px-2">
+                        الخدمات <i class="fas fa-chevron-down mr-1 text-xs"></i>
+                    </button>
+                    <div
+                        class="absolute hidden group-hover:block w-48 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-gold top-full right-0">
+                        <button onclick="navigateTo('procedures')"
+                            class="block w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-green-50 border-b">مرشد
+                            الإجراءات</button>
+                        <button onclick="navigateTo('law')"
+                            class="block w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-green-50">قانون
+                            الاستثمار</button>
+                    </div>
+                </div>
+
+                <button onclick="navigateTo('contact-page')"
+                    class="bg-accent-gold text-white px-5 py-2 rounded-full hover:bg-yellow-600 transition shadow-md mr-2">
+                    اتصل بنا
+                </button>
+            </nav>
+
+            <!-- Mobile Toggle -->
+            <button class="lg:hidden text-primary-green text-2xl focus:outline-none" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-t h-screen overflow-y-auto pb-40 fixed w-full z-40">
+            <div class="flex flex-col p-4 space-y-2">
+                <button onclick="navigateTo('home')"
+                    class="text-right font-bold text-gray-800 py-3 border-b">الرئيسية</button>
+
+                <div class="py-2 border-b">
+                    <span class="text-gray-500 text-sm mb-2 block font-bold">تصفح حسب القطاع</span>
+                    <div id="mobile-sectors-list" class="pr-2 space-y-2"></div>
+                </div>
+
+                <div class="py-2 border-b">
+                    <span class="text-gray-500 text-sm mb-2 block font-bold">تصفح حسب المحلية</span>
+                    <div id="mobile-localities-list" class="pr-2 space-y-2"></div>
+                </div>
+
+                <button onclick="navigateTo('library')" class="text-right font-bold text-gray-800 py-3 border-b">مكتبة
+                    المستثمر</button>
+                <button onclick="navigateTo('contact-page')"
+                    class="bg-primary-green text-white py-3 rounded mt-4 w-full">اتصل بنا</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-24 md:pt-32">
+
+        <!-- ==================== HOME PAGE ==================== -->
+        <section id="home" class="page-section active">
+            <!-- Hero -->
+            <div class="hero-bg text-white min-h-[80vh] flex items-center relative">
+                <div class="absolute inset-0 bg-black opacity-30"></div>
+                <div class="container mx-auto px-4 relative z-10 text-center md:text-right" data-aos="fade-up">
+                    <span
+                        class="bg-accent-gold text-white px-4 py-1 rounded-sm text-sm font-bold mb-6 inline-block tracking-wide">الاستثمار
+                        الأمثل للموارد</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                        مفوضية تشجيع الاستثمار<br>
+                        <span class="text-gray-200 text-3xl md:text-5xl font-light">ولاية الخرطوم</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-10 max-w-2xl opacity-90 leading-relaxed font-light">
+                        بوابة إلكترونية موحدة تربطك بأكثر من 500 فرصة استثمارية في القطاعات الزراعية، الصناعية والخدمية.
+                    </p>
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 md:space-x-reverse">
+                        <button onclick="showAllOpportunities()"
+                            class="bg-white text-primary-green px-10 py-4 rounded shadow-lg font-bold hover:bg-gray-100 transition transform hover:-translate-y-1">
+                            استكشف الفرص
+                        </button>
+                        <button onclick="navigateTo('library')"
+                            class="bg-accent-gold text-white px-10 py-4 rounded font-bold hover:bg-yellow-600 transition">
+                            مكتبة المستثمر
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="bg-white py-16">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold text-primary-green mb-12">أرقام وإحصائيات</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
+                            <i class="fas fa-industry text-4xl text-accent-gold mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">80%</h3>
+                            <p class="text-gray-600">من النشاط الصناعي</p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
+                            <i class="fas fa-tractor text-4xl text-accent-gold mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">1.8M</h3>
+                            <p class="text-gray-600">فدان قابل للزراعة</p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
+                            <i class="fas fa-city text-4xl text-accent-gold mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">50KM</h3>
+                            <p class="text-gray-600">بعد مدينة الجيلي عن المركز</p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
+                            <i class="fas fa-users text-4xl text-accent-gold mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">400K+</h3>
+                            <p class="text-gray-600">فرصة عمل متوقعة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== OPPORTUNITIES PAGE (DYNAMIC) ==================== -->
+        <section id="opportunities" class="page-section bg-gray-50 py-12">
+            <div class="container mx-auto px-4">
+
+                <!-- Search & Filter Header -->
+                <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-primary-green mb-1" id="opp-page-title">كل الفرص
+                                الاستثمارية</h2>
+                            <p class="text-gray-500 text-sm" id="opp-count-label">جاري التحميل...</p>
+                        </div>
+                        <div class="w-full md:w-1/2 relative">
+                            <input type="text" id="search-input" onkeyup="filterProjects()"
+                                placeholder="ابحث عن اسم مشروع، قطاع، أو محلية..."
+                                class="w-full p-3 pr-10 border rounded-lg focus:outline-none focus:border-primary-green">
+                            <i class="fas fa-search absolute top-4 right-4 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+                    <!-- Cards will be injected here via JavaScript -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="no-results" class="hidden text-center py-12">
+                    <i class="fas fa-folder-open text-gray-300 text-6xl mb-4"></i>
+                    <p class="text-gray-500">لا توجد مشاريع تطابق بحثك.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== INVESTOR LIBRARY ==================== -->
+        <section id="library" class="page-section bg-white py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-primary-green">مكتبة المستثمر</h2>
+                    <div class="w-20 h-1 bg-accent-gold mx-auto mt-4 rounded"></div>
+                    <p class="text-gray-600 mt-4">جميع الوثائق والقوانين واللوائح التي يحتاجها المستثمر</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                    <!-- File 1: Law -->
+                    <div
+                        class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-xl transition transform hover:-translate-y-1 relative group">
+                        <div
+                            class="absolute top-0 right-0 bg-primary-green text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                            قانون</div>
+                        <div class="text-center mb-6 mt-4">
+                            <i
+                                class="fas fa-gavel text-5xl text-gray-400 group-hover:text-primary-green transition"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-2">قانون الاستثمار 2015</h3>
+                        <p class="text-gray-500 text-center text-sm mb-6">تعديل 2018 - يوضح الضمانات والميزات التفضيلية.
+                        </p>
+                        <div class="flex gap-2">
+                            <a href="https://drive.google.com/drive/folders/19McqGz3zbSlwdlxhqSNITvdQPBz5pDR3"
+                                target="_blank"
+                                class="w-full bg-accent-gold text-white py-2 rounded font-bold hover:bg-yellow-600 transition text-center text-sm">
+                                <i class="fas fa-download ml-1"></i> تحميل / عرض
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- File 2: Guide -->
+                    <div
+                        class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-xl transition transform hover:-translate-y-1 relative group">
+                        <div
+                            class="absolute top-0 right-0 bg-blue-600 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                            دليل</div>
+                        <div class="text-center mb-6 mt-4">
+                            <i
+                                class="fas fa-book-reader text-5xl text-gray-400 group-hover:text-blue-600 transition"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-2">دليل المستثمر 2015</h3>
+                        <p class="text-gray-500 text-center text-sm mb-6">تعرف على مناخ الاستثمار والموارد المتاحة.</p>
+                        <div class="flex gap-2">
+                            <a href="https://drive.google.com/drive/folders/19McqGz3zbSlwdlxhqSNITvdQPBz5pDR3"
+                                target="_blank"
+                                class="w-full bg-accent-gold text-white py-2 rounded font-bold hover:bg-yellow-600 transition text-center text-sm">
+                                <i class="fas fa-download ml-1"></i> تحميل / عرض
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- File 3: Procedures -->
+                    <div
+                        class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-xl transition transform hover:-translate-y-1 relative group">
+                        <div
+                            class="absolute top-0 right-0 bg-red-600 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                            إجراءات</div>
+                        <div class="text-center mb-6 mt-4">
+                            <i class="fas fa-list-check text-5xl text-gray-400 group-hover:text-red-600 transition"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-2">مرشد الإجراءات 2018</h3>
+                        <p class="text-gray-500 text-center text-sm mb-6">خطوات التقديم عبر النافذة الموحدة.</p>
+                        <div class="flex gap-2">
+                            <a href="https://drive.google.com/drive/folders/19McqGz3zbSlwdlxhqSNITvdQPBz5pDR3"
+                                target="_blank"
+                                class="w-full bg-accent-gold text-white py-2 rounded font-bold hover:bg-yellow-600 transition text-center text-sm">
+                                <i class="fas fa-download ml-1"></i> تحميل / عرض
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PROCEDURES & LAW & CONTACT (Static) ==================== -->
+        <!-- (Kept same as previous version for brevity, as user focused on Data Accuracy) -->
+        <section id="procedures" class="page-section bg-gray-50 py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-primary-green">خطوات الاستثمار</h2>
+                <p class="mt-4">راجع ملف "مرشد الإجراءات" في المكتبة للتفاصيل الكاملة.</p>
+            </div>
+        </section>
+        <section id="law" class="page-section bg-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-primary-green">القوانين واللوائح</h2>
+                <p class="mt-4">راجع ملف "قانون الاستثمار" في المكتبة للتفاصيل الكاملة.</p>
+            </div>
+        </section>
+        <section id="contact-page" class="page-section bg-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-primary-green mb-8">تواصل معنا</h2>
+                <div class="bg-gray-100 p-8 rounded-xl max-w-3xl mx-auto shadow-inner">
+                    <p class="text-xl mb-4 font-bold text-gray-800">مقر المفوضية</p>
+                    <p class="text-gray-600 mb-6">ولاية الخرطوم، السودان</p>
+                    <div class="flex flex-col md:flex-row justify-center gap-6">
+                        <a href="tel:00249126434639"
+                            class="flex items-center justify-center gap-2 bg-white px-6 py-3 rounded shadow hover:text-primary-green">
+                            <i class="fas fa-phone"></i> <span dir="ltr">00249 126 434 639</span>
+                        </a>
+                        <a href="mailto:iec.krt.gov@gmail.com"
+                            class="flex items-center justify-center gap-2 bg-white px-6 py-3 rounded shadow hover:text-primary-green">
+                            <i class="fas fa-envelope"></i> iec.krt.gov@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Project Details -->
+    <div id="project-modal"
+        class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50" onclick="closeModal()"></div>
+
+        <div
+            class="modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto max-h-[90vh] animate-slide-up">
+
+            <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+                onclick="closeModal()">
+                <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 18 18">
+                    <path
+                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                    </path>
+                </svg>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="modal-content text-right relative">
+                <!-- Header Image -->
+                <div class="h-48 w-full relative">
+                    <img id="modal-img" src="" class="w-full h-full object-cover rounded-t">
+                    <div class="absolute bottom-0 right-0 bg-primary-green text-white px-4 py-2 rounded-tl-lg font-bold"
+                        id="modal-category">
+                        <!-- Category -->
+                    </div>
+                </div>
+
+                <div class="py-4 px-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2" id="modal-title">عنوان المشروع</h2>
+                    <p class="text-sm text-gray-500 mb-4" id="modal-loc"><i class="fas fa-map-marker-alt ml-1"></i>
+                        الموقع</p>
+
+                    <hr class="border-gray-200 mb-4">
+
+                    <h3 class="font-bold text-lg text-primary-green mb-2">وصف الفرصة</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6" id="modal-desc">
+                        وصف تفصيلي للمشروع...
+                    </p>
+
+                    <div class="flex justify-end pt-2">
+                        <button onclick="closeModal()"
+                            class="px-4 py-2 bg-gray-200 p-3 rounded-lg text-gray-700 hover:bg-gray-300 ml-2 transition">إغلاق</button>
+                        <a href="mailto:iec.krt.gov@gmail.com"
+                            class="px-4 py-2 bg-accent-gold p-3 rounded-lg text-white hover:bg-yellow-600 transition">استفسر
+                            عن هذه الفرصة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark-gray text-white pt-10 pb-6 border-t-4 border-accent-gold mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 mb-4">مفوضية تشجيع الاستثمار - ولاية الخرطوم</p>
+            <p class="text-xs text-gray-600">&copy; 2025 جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // --- ACCURATE DATA PARSED FROM CSV FILES ---
+        const db = {
+            sectors: {
+                "الزراعي": [
+                    { title: "مشروع مجمعات البيوت المحمية", loc: "شرق النيل / متعدد", desc: "إنتاج الخضروات في غير مواسمها لتحقيق الاكتفاء الذاتي والصادر." },
+                    { title: "مشروع الري المحوري لإنتاج الأعلاف", loc: "متعدد", desc: "زراعة البرسيم والذرة الشامية لتوفير الأعلاف للثروة الحيوانية." },
+                    { title: "إنتاج النباتات الطبية والعطرية والتوابل", loc: "الريف الشمالي", desc: "زراعة وتجهيز النباتات الطبية للتصدير والصناعات الدوائية." },
+                    { title: "إنتاج الزيوت العطرية", loc: "صناعي/زراعي", desc: "استخلاص الزيوت من النباتات العطرية." },
+                    { title: "إنتاج الدهون النباتية", loc: "صناعي/زراعي", desc: "تصنيع الدهون النباتية من المحاصيل الزيتية." },
+                    { title: "تسمين العجول وصادر اللحوم", loc: "غرب أمدرمان", desc: "مشاريع متكاملة لتسمين العجول وفق الاشتراطات الصحية للصادر." },
+                    { title: "مزارع الدواجن الحديثة (لاحم/بياض)", loc: "جبل أولياء / شرق النيل", desc: "تربية الدواجن وإنتاج اللحوم البيضاء وبيض المائدة." },
+                    { title: "مشاتل إنتاج نباتات الزينة والفاكهة", loc: "شرق النيل", desc: "إكثار الشتول المحسنة للفاكهة ونباتات الزينة." },
+                    { title: "تربية الأسماك", loc: "جبل أولياء", desc: "الاستزراع السمكي في أحواض عائمة أو ترابية." }
+                ],
+                "الصناعي": [
+                    { title: "مدينة الجيلي الصناعية", loc: "شمال بحري (الجيلي)", desc: "أكبر مدينة صناعية (50 كم من المركز)، تستوعب الصناعات الاستراتيجية وتمثل 80% من المساحات الصناعية.", tag: "استراتيجي" },
+                    { title: "مدينة الصناعات الجلدية", loc: "غرب أمدرمان", desc: "مشروع لتوطين صناعة الجلود والدباغة والمنتجات الجلدية المتطورة.", tag: "استراتيجي" },
+                    { title: "صناعة تدوير النفايات", loc: "الخرطوم", desc: "إنتاج الطاقة والأسمدة العضوية من المخلفات الصلبة." },
+                    { title: "صناعة المعدات الكهربائية", loc: "بحري", desc: "تجميع وتصنيع المحولات والكابلات والأدوات الكهربائية." },
+                    { title: "الصناعات الهندسية", loc: "جياد / بحري", desc: "تصنيع قطع الغيار والآليات الزراعية." },
+                    { title: "صناعات صغيرة وحرفية", loc: "شرق النيل", desc: "مسابك، ورش حدادة، سمكرة، صناعات خشبية ومنتجات التريكو." }
+                ],
+                "الخدمي": [
+                    { title: "شركات سياحة داخلية منظمة", loc: "الخرطوم", desc: "تنظيم رحلات سياحية وثقافية للمواقع الأثرية والطبيعية." },
+                    { title: "النقل السياحي النهري", loc: "شريط النيل", desc: "مواعين نقل نهري ومراسي سياحية على النيل." },
+                    { title: "النزل الاقتصادية والبيوت التراثية", loc: "الخرطوم / أمدرمان", desc: "إقامة نزل سياحية تعكس التراث المحلي." },
+                    { title: "مستشفيات تخصصية (السكري، القلب)", loc: "الخرطوم", desc: "مراكز علاجية متخصصة لتقليل العلاج بالخارج." },
+                    { title: "مراكز العلاج الطبيعي والتأهيل", loc: "الخرطوم", desc: "مراكز متخصصة في العلاج الطبيعي وإصابات الملاعب." },
+                    { title: "مستشفيات جراحة اليوم الواحد", loc: "متعدد", desc: "مراكز للجراحات البسيطة والمتوسطة." }
+                ],
+                "التعدين": [
+                    { title: "صناعة الطوب والرخام", loc: "كرري", desc: "استغلال المحاجر لإنتاج مواد البناء." },
+                    { title: "معالجة مخلفات التعدين", loc: "شمال الخرطوم", desc: "استخلاص المعادن بتقنيات حديثة صديقة للبيئة." }
+                ]
+            },
+            localities: {
+                "مشاريع استراتيجية": [
+                    { title: "تطوير مدينة الجيلي الصناعية", loc: "شمال بحري", desc: "بنية تحتية متكاملة للصناعات الكبرى (738 مليون دولار تكلفة تقديرية)." },
+                    { title: "تطوير مدينة الصناعات الجلدية", loc: "غرب أمدرمان", desc: "مدينة متخصصة للاستفادة من الثروة الحيوانية الهائلة بالولاية." }
+                ],
+                "شرق النيل": [
+                    { title: "صناعات صغيرة (ورش/مسابك)", loc: "شرق النيل", desc: "منطقة حرفية للصناعات الصغيرة والمتوسطة." },
+                    { title: "مشاتل إنتاج الشتول", loc: "شرق النيل", desc: "إنتاج شتول الفاكهة ونباتات الزينة." },
+                    { title: "مجمعات البيوت المحمية", loc: "شرق النيل", desc: "الزراعة المحمية للخضر." }
+                ],
+                "جبل أولياء": [
+                    { title: "مزارع الأسماك", loc: "جبل أولياء", desc: "الاستزراع السمكي خلف الخزان." },
+                    { title: "مزارع الدواجن", loc: "جبل أولياء", desc: "منطقة إنتاج داجني رئيسية." }
+                ],
+                "الخرطوم": [
+                    { title: "الخدمات الطبية المتخصصة", loc: "الخرطوم", desc: "المدينة الطبية والمستشفيات التخصصية." },
+                    { title: "السياحة والفنادق", loc: "الخرطوم", desc: "فنادق نيلية وخدمات سياحية." }
+                ]
+            }
+        };
+
+        let allProjects = [];
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeMenus();
+            loadAllProjectsFlattened();
+
+            // Check for URL params to filter immediately
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('filter')) {
+                document.getElementById('search-input').value = urlParams.get('filter');
+                filterProjects();
+            }
+        });
+
+        // --- Logic: Prepare Menus ---
+        function initializeMenus() {
+            const sectorContainer = document.getElementById('nav-sectors-container');
+            const mobileSectorList = document.getElementById('mobile-sectors-list');
+
+            Object.keys(db.sectors).forEach(sector => {
+                // Desktop
+                const item = document.createElement('button');
+                item.className = "block w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary-green border-b last:border-0 transition flex justify-between";
+                item.innerHTML = `<span>${sector}</span> <span class="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded-full">${db.sectors[sector].length}</span>`;
+                item.onclick = () => filterBySector(sector);
+                sectorContainer.appendChild(item);
+
+                // Mobile
+                const mItem = document.createElement('button');
+                mItem.className = "block w-full text-right py-2 text-sm text-gray-600 hover:text-primary-green pr-4 border-r-2 border-transparent hover:border-primary-green transition";
+                mItem.textContent = sector;
+                mItem.onclick = () => { filterBySector(sector); toggleMobileMenu(); };
+                mobileSectorList.appendChild(mItem);
+            });
+
+            const localityContainer = document.getElementById('nav-localities-container');
+            const mobileLocalityList = document.getElementById('mobile-localities-list');
+
+            Object.keys(db.localities).forEach(loc => {
+                // Desktop
+                const item = document.createElement('button');
+                item.className = "block w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary-green border-b last:border-0 transition flex justify-between";
+                item.innerHTML = `<span>${loc}</span> <span class="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded-full">${db.localities[loc].length}</span>`;
+                item.onclick = () => filterByLocality(loc);
+                localityContainer.appendChild(item);
+
+                // Mobile
+                const mItem = document.createElement('button');
+                mItem.className = "block w-full text-right py-2 text-sm text-gray-600 hover:text-primary-green pr-4 border-r-2 border-transparent hover:border-primary-green transition";
+                mItem.textContent = loc;
+                mItem.onclick = () => { filterByLocality(loc); toggleMobileMenu(); };
+                mobileLocalityList.appendChild(mItem);
+            });
+        }
+
+        // --- Logic: Data Flattening ---
+        function loadAllProjectsFlattened() {
+            allProjects = [];
+            // Add from Sectors
+            Object.keys(db.sectors).forEach(sector => {
+                db.sectors[sector].forEach(p => {
+                    allProjects.push({ ...p, type: 'sector', category: sector });
+                });
+            });
+            // Add from Localities (if not duplicate title)
+            Object.keys(db.localities).forEach(loc => {
+                db.localities[loc].forEach(p => {
+                    const exists = allProjects.find(existing => existing.title === p.title);
+                    if (!exists) {
+                        allProjects.push({ ...p, type: 'locality', category: loc });
+                    }
+                });
+            });
+        }
+
+        // --- Navigation ---
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function showAllOpportunities() {
+            navigateTo('opportunities');
+            renderProjects(allProjects, "كل الفرص الاستثمارية");
+        }
+
+        // --- Filtering ---
+        function filterBySector(sectorName) {
+            navigateTo('opportunities');
+            const filtered = allProjects.filter(p => p.category === sectorName || (p.type === 'locality' && p.desc.includes(sectorName)));
+            renderProjects(filtered, `القطاع: ${sectorName}`);
+        }
+
+        function filterByLocality(locName) {
+            navigateTo('opportunities');
+            let filtered;
+            if (db.localities[locName]) {
+                // Explicit list in DB
+                filtered = db.localities[locName].map(p => ({ ...p, category: locName }));
+            } else {
+                // Search in all projects
+                filtered = allProjects.filter(p => p.loc.includes(locName) || p.category === locName);
+            }
+            renderProjects(filtered, `محلية: ${locName}`);
+        }
+
+        function filterProjects() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = allProjects.filter(p =>
+                p.title.toLowerCase().includes(query) ||
+                p.desc.toLowerCase().includes(query) ||
+                p.loc.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
+            );
+            renderProjects(filtered, query ? `نتائج البحث: ${query}` : "كل الفرص");
+        }
+
+        // --- Image Helper ---
+        function getImageForProject(p) {
+            const txt = (p.title + " " + p.category).toLowerCase();
+            if (txt.includes("محمية") || txt.includes("خضر")) return 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=500&q=60';
+            if (txt.includes("ري") || txt.includes("زراع")) return 'https://images.unsplash.com/photo-1625246333195-58197bd47d19?auto=format&fit=crop&w=500&q=60';
+            if (txt.includes("جيلي") || txt.includes("صناع")) return 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=60';
+            if (txt.includes("جلد")) return 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=500&q=60';
+            if (txt.includes("طب") || txt.includes("مستشف") || txt.includes("علاج")) return 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=500&q=60';
+            if (txt.includes("سياح") || txt.includes("فندق") || txt.includes("نيل")) return 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=60';
+            if (txt.includes("سمك") || txt.includes("دواجن") || txt.includes("حيوان")) return 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=500&q=60';
+            return 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=60';
+        }
+
+        // --- Rendering ---
+        function renderProjects(projects, title) {
+            const grid = document.getElementById('projects-grid');
+            const countLabel = document.getElementById('opp-count-label');
+            const titleEl = document.getElementById('opp-page-title');
+            const noResults = document.getElementById('no-results');
+
+            grid.innerHTML = '';
+            titleEl.textContent = title;
+            countLabel.textContent = `${projects.length} مشروع متاح`;
+
+            if (projects.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            projects.forEach((p, index) => {
+                const isStrategic = p.tag === 'استراتيجي';
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-lg shadow hover:shadow-xl transition duration-300 border-b-4 ${isStrategic ? 'border-red-500' : 'border-primary-green'} fade-in flex flex-col`;
+
+                const imgUrl = getImageForProject(p);
+                // Safe serialization for onclick
+                const pString = JSON.stringify(p).replace(/"/g, '&quot;');
+
+                card.innerHTML = `
+                    <div class="h-48 overflow-hidden relative group cursor-pointer" onclick="openModal(${pString})">
+                        <img src="${imgUrl}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                        ${isStrategic ? '<span class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow">مشروع استراتيجي</span>' : ''}
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition duration-300"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-800 leading-tight hover:text-primary-green cursor-pointer" onclick="openModal(${pString})">${p.title}</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">${p.desc}</p>
+                        <div class="mt-auto">
+                            <div class="flex items-center text-xs text-gray-500 justify-between border-t pt-3 mb-3">
+                                <span class="flex items-center"><i class="fas fa-map-marker-alt text-primary-green ml-1"></i> ${p.loc}</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded text-primary-green font-bold">${p.category}</span>
+                            </div>
+                            <button onclick="openModal(${pString})" class="w-full border border-primary-green text-primary-green hover:bg-primary-green hover:text-white py-2 rounded transition text-sm font-bold">التفاصيل</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- Modal Logic ---
+        function openModal(project) {
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-desc').textContent = project.desc; // In real app, this would be a longer description
+            document.getElementById('modal-loc').innerHTML = `<i class="fas fa-map-marker-alt ml-1"></i> ${project.loc}`;
+            document.getElementById('modal-category').textContent = project.category;
+            document.getElementById('modal-img').src = getImageForProject(project);
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('modal-active');
+        }
+
+        // Close on Esc
+        document.onkeydown = function (evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+
+</html>
